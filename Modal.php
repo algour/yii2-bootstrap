@@ -37,7 +37,12 @@ class Modal extends Widget
     const SIZE_LARGE = "modal-lg";
     const SIZE_SMALL = "modal-sm";
     const SIZE_DEFAULT = "";
-
+    
+    /**
+     * @var string additional body options
+     * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
+     */
+    public $bodyOptions = [];
     /**
      * @var string the header content in the modal window.
      */
@@ -149,7 +154,8 @@ class Modal extends Widget
      */
     protected function renderBodyBegin()
     {
-        return Html::beginTag('div', ['class' => 'modal-body']);
+        Html::addCssClass($this->bodyOptions, ['class' => 'modal-body']);
+        return Html::beginTag('div', $this->bodyOptions);
     }
 
     /**
